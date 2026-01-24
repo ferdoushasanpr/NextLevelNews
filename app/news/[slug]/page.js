@@ -1,9 +1,17 @@
-export default function NewsDetailPage({ params }) {
-  const newsId = params.id;
+import { DUMMY_NEWS } from "@/dummy-news";
+
+export default async function NewsDetailPage({ params }) {
+  const { slug: newsSlug } = await params;
+  const newsItem = DUMMY_NEWS.find((item) => item.slug === newsSlug);
+
   return (
-    <>
-      <h1>News Detail Page</h1>
-      <p>News ID: {newsId}</p>
-    </>
+    <article className="news-article">
+      <header>
+        <img src={`/images/news/${newsItem.image}`} alt={newsItem.title} />
+        <h1>{newsItem.title}</h1>
+        <time dateTime={newsItem.date}>{newsItem.date}</time>
+      </header>
+      <p>{newsItem.content}</p>
+    </article>
   );
 }
