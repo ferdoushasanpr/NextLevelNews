@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import { getNewsForYear } from "@/lib/news";
 import NewsLink from "@/components/news-link";
 
