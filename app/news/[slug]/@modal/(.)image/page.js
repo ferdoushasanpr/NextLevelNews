@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 
 import { DUMMY_NEWS } from "@/dummy-news";
+import ModalBackdrop from "@/components/modal-backdrop";
 
 export default async function InterceptedImagePage({ params }) {
   const { slug: newsItemSlug } = await params;
@@ -14,7 +15,7 @@ export default async function InterceptedImagePage({ params }) {
 
   return (
     <>
-      <div className="modal-backdrop" />
+      <ModalBackdrop />
       <dialog className="modal" open>
         <div className="fullscreen-image">
           <img src={`/images/news/${newsItem.image}`} alt={newsItem.title} />
