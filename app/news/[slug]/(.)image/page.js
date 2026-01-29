@@ -1,6 +1,23 @@
-import React from "react";
+import { notFound } from "next/navigation";
 
-export default async function InterceptedImagePath({ params }) {
-  const { slug } = await params;
-  return <div>InterceptedImagePath</div>;
+import { DUMMY_NEWS } from "@/dummy-news";
+
+export default async function InterceptedImagePage({ params }) {
+  const { slug: newsItemSlug } = await params;
+  const newsItem = DUMMY_NEWS.find(
+    (newsItem) => newsItem.slug === newsItemSlug,
+  );
+
+  if (!newsItem) {
+    notFound();
+  }
+
+  return (
+    <>
+      <h2>Intercepted!</h2>
+      <div className="fullscreen-image">
+        <img src={`/images/news/${newsItem.image}`} alt={newsItem.title} />
+      </div>
+    </>
+  );
 }
