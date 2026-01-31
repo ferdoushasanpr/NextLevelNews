@@ -1,4 +1,3 @@
-import { DUMMY_NEWS } from "@/dummy-news";
 import NewsLink from "@/components/news-link";
 
 export default async function NewsPage() {
