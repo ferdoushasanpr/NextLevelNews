@@ -12,17 +12,17 @@ export default async function FilteredNewsPage({ params }) {
   const { filter } = await params;
   const selectedYear = filter?.[0];
   const selectedMonth = filter?.[1];
-  let links = getAvailableNewsYears();
+  let links = await getAvailableNewsYears();
 
   let news;
   if (selectedYear && !selectedMonth) {
     links = getAvailableNewsMonths(selectedYear);
-    news = getNewsForYear(filter);
+    news = await getNewsForYear(filter);
   }
 
   if (selectedYear && selectedMonth) {
     links = [];
-    news = getNewsForYearAndMonth(selectedYear, selectedMonth);
+    news = await getNewsForYearAndMonth(selectedYear, selectedMonth);
   }
 
   return (

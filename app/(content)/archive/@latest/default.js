@@ -2,8 +2,8 @@ import React from "react";
 import { getLatestNews } from "@/lib/news";
 import NewsLink from "@/components/news-link";
 
-export default function LatestPage() {
-  const latestNews = getLatestNews();
+export default async function LatestPage() {
+  const latestNews = await getLatestNews();
 
   return (
     <div>
