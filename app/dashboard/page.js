@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import classes from "./dashboard.module.css";
+import AddNewsModal from "@/components/add-news-modal";
 
 const INITIAL_NEWS = [
   {
@@ -90,39 +91,7 @@ export default function AdminDashboard() {
       </section>
 
       {/* Reuse your Global Modal Styles with Module-specific form content */}
-      {isAdding && (
-        <div className="modal-backdrop">
-          <div className="modal">
-            <h2>Add New News Article</h2>
-            <form
-              className={classes.adminForm}
-              onSubmit={(e) => {
-                e.preventDefault();
-                setIsAdding(false);
-              }}
-            >
-              <input type="text" placeholder="Article Title" required />
-              <input type="date" required />
-              <div className={classes.actions}>
-                <button type="submit" className={classes.addBtn}>
-                  Save Article
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setIsAdding(false)}
-                  style={{
-                    background: "none",
-                    border: "none",
-                    cursor: "pointer",
-                  }}
-                >
-                  Cancel
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
+      {isAdding && <AddNewsModal setIsAdding={setIsAdding} />}
     </div>
   );
 }
