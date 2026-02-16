@@ -66,7 +66,6 @@ export default function AdminDashboard() {
             <tr>
               <th>Article Title</th>
               <th>Publish Date</th>
-              <th>Views</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -75,7 +74,6 @@ export default function AdminDashboard() {
               <tr key={item.id}>
                 <td>{item.title}</td>
                 <td>{item.date}</td>
-                <td>{item.views.toLocaleString()}</td>
                 <td>
                   <button
                     className={classes.deleteBtn}
