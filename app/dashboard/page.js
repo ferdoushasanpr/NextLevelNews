@@ -1,27 +1,31 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import classes from "./dashboard.module.css";
 import AddNewsModal from "@/components/add-news-modal";
 
-const INITIAL_NEWS = [
-  {
-    id: 1,
-    title: "The Rise of Minimalist UI",
-    date: "2024-03-15",
-    views: 1240,
-  },
-  { id: 2, title: "Modern CSS Techniques", date: "2024-03-12", views: 890 },
-];
-
 export default function AdminDashboard() {
-  const [newsList, setNewsList] = useState(INITIAL_NEWS);
+  const [newsList, setNewsList] = useState([]);
   const [isAdding, setIsAdding] = useState(false);
 
   const handleDelete = (id) => {
     setNewsList((prev) => prev.filter((item) => item.id !== id));
   };
+
+  useEffect(() => {
+    async function fetchNews() {
+      try {
+        const response = await fetch("/api/news");
+        const data = await response.json();
+        setNewsList(data);
+      } catch (error) {
+        console.error("Error fetching news:", error);
+      }
+    }
+
+    fetchNews();
+  }, []);
 
   return (
     <div className={classes.page}>
@@ -72,7 +76,14 @@ export default function AdminDashboard() {
           <tbody>
             {newsList.map((item) => (
               <tr key={item.id}>
-                <td>{item.title}</td>
+                <td>
+                  <Link
+                    href={`/news/${item.slug}`}
+                    style={{ textDecoration: "none", color: "inherit" }}
+                  >
+                    {item.title}
+                  </Link>
+                </td>
                 <td>{item.date}</td>
                 <td>
                   <button
