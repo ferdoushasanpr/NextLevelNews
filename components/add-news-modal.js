@@ -3,11 +3,23 @@ import React from "react";
 import classes from "./add-news-modal.module.css";
 
 export default function AddNewsModal({ setIsAdding }) {
+  async function handleSubmit(formData) {
+    const title = formData.get("title");
+    const content = formData.get("content");
+    const date = formData.get("date");
+
+    await fetch("/api/news", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ title, content, date }),
+    });
+  }
+
   return (
     <div className="modal-backdrop">
       <div className="modal">
         <h2 className={classes.formTitle}>Add New News Article</h2>
-        <form className={classes.adminForm}>
+        <form className={classes.adminForm} action={handleSubmit}>
           <input
             type="text"
             name="title"
