@@ -1,3 +1,7 @@
+.formTitle {
+  color: #181817;
+}
+
 .adminForm {
   display: flex;
   flex-direction: column;
@@ -5,11 +9,16 @@
   margin-top: 1.5rem;
 }
 
-.adminForm input {
+.adminForm input,
+.adminForm textarea {
   padding: 0.8rem;
   border-radius: 4px;
   border: 1px solid #181817;
   font-size: 1rem;
+}
+
+.adminForm textarea::placeholder {
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .actions {

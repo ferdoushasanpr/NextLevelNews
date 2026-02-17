@@ -6,7 +6,7 @@ export default function AddNewsModal({ setIsAdding }) {
   return (
     <div className="modal-backdrop">
       <div className="modal">
-        <h2>Add New News Article</h2>
+        <h2 className={classes.formTitle}>Add New News Article</h2>
         <form
           className={classes.adminForm}
           onSubmit={(e) => {
@@ -15,6 +15,7 @@ export default function AddNewsModal({ setIsAdding }) {
           }}
         >
           <input type="text" placeholder="Article Title" required />
+          <textarea placeholder="Article Content" required />
           <input type="date" required />
           <div className={classes.actions}>
             <button type="submit" className={classes.addBtn}>
