@@ -7,16 +7,15 @@ export default function AddNewsModal({ setIsAdding }) {
     <div className="modal-backdrop">
       <div className="modal">
         <h2 className={classes.formTitle}>Add New News Article</h2>
-        <form
-          className={classes.adminForm}
-          onSubmit={(e) => {
-            e.preventDefault();
-            setIsAdding(false);
-          }}
-        >
-          <input type="text" placeholder="Article Title" required />
-          <textarea placeholder="Article Content" required />
-          <input type="date" required />
+        <form className={classes.adminForm}>
+          <input
+            type="text"
+            name="title"
+            placeholder="Article Title"
+            required
+          />
+          <textarea name="content" placeholder="Article Content" required />
+          <input type="date" name="date" required />
           <div className={classes.actions}>
             <button type="submit" className={classes.addBtn}>
               Save Article
